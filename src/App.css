@@ -1,0 +1,449 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+/* Start Page Styles */
+.start-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 1rem;
+}
+
+.start-card {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+  padding: 2.5rem;
+  max-width: 700px;
+  width: 100%;
+  text-align: center;
+}
+
+.start-card h1 {
+  margin-bottom: 0.5rem;
+  font-size: 2.5rem;
+  color: #333;
+}
+
+.subtitle {
+  color: #666;
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.instructions {
+  text-align: left;
+  margin-bottom: 2.5rem;
+}
+
+.instructions h2 {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  color: #444;
+  text-align: center;
+}
+
+.instructions ul {
+  padding-left: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.instructions li {
+  margin-bottom: 0.7rem;
+  line-height: 1.5;
+}
+
+.types-preview {
+  margin: 2rem 0;
+  padding: 1.5rem;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+}
+
+.types-preview h3 {
+  margin-bottom: 1rem;
+  font-size: 1.1rem;
+  text-align: center;
+}
+
+.type-chips {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.type-chip {
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: white;
+}
+
+.type-chip.clarifier {
+  background-color: #3498db;
+}
+
+.type-chip.ideator {
+  background-color: #f1c40f;
+  color: #333;
+}
+
+.type-chip.developer {
+  background-color: #2ecc71;
+}
+
+.type-chip.implementer {
+  background-color: #e74c3c;
+}
+
+.start-button {
+  padding: 0.9rem 2.5rem;
+  background-color: #4a90e2;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin: 1.5rem 0;
+  box-shadow: 0 2px 6px rgba(74, 144, 226, 0.3);
+}
+
+.start-button:hover {
+  background-color: #3a80d2;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(74, 144, 226, 0.4);
+}
+
+.start-button:active {
+  transform: translateY(0);
+}
+
+.footnote {
+  font-size: 0.85rem;
+  color: #888;
+  margin-top: 2rem;
+}
+
+/* Existing styles */
+.app-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+/* Update Answer Option styles for multiple selection */
+.answer-option {
+  padding: 1rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+
+.answer-option:hover {
+  border-color: #bbb;
+  background-color: rgba(150, 150, 150, 0.1);
+}
+
+.answer-option.selected {
+  border-color: #4a90e2;
+  background-color: rgba(150, 150, 150, 0.1);
+  box-shadow: 0 2px 6px rgba(74, 144, 226, 0.2);
+}
+
+.checkmark {
+  font-size: 1.2rem;
+  color: #4a90e2;
+  margin-left: 10px;
+  font-weight: bold;
+}
+
+/* Selection limit instruction */
+.selection-limit {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 1rem;
+  font-style: italic;
+}
+
+.answer-option.disabled {
+  pointer-events: none;
+}
+
+.answer-content {
+  flex: 1;
+}
+
+.type-indicators {
+  display: flex;
+  gap: 4px;
+  margin-top: 8px;
+}
+
+.type-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+/* Question Images Styles */
+.question-images {
+  margin: 1rem 0 1.5rem;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.question-images.single-image {
+  max-width: 100%;
+}
+
+.question-images.multi-image {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-gap: 10px;
+}
+
+.image-container {
+  position: relative;
+  overflow: hidden;
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.image-container img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.image-container:hover img {
+  transform: scale(1.02);
+}
+
+/* For larger images in single-image mode */
+.single-image .image-container {
+  max-height: 400px;
+  display: flex;
+  justify-content: center;
+}
+
+.single-image .image-container img {
+  object-fit: contain;
+  max-height: 400px;
+  width: auto;
+  max-width: 100%;
+}
+
+/* Image Modal Styles */
+.image-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 20px;
+}
+
+.image-modal-content {
+  position: relative;
+  max-width: 90vw;
+  max-height: 90vh;
+}
+
+.enlarged-image {
+  max-width: 100%;
+  max-height: 80vh;
+  object-fit: contain;
+}
+
+.close-modal-button {
+  position: absolute;
+  top: -40px;
+  right: -10px;
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 2rem;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.image-navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 15px;
+  color: white;
+}
+
+.image-navigation button {
+  background-color: rgba(255, 255, 255, 0.2);
+  border: none;
+  padding: 8px 15px;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+}
+
+.image-navigation button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.image-number {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  font-size: 0.8rem;
+  padding: 3px 8px;
+  border-radius: 10px;
+}
+
+/* Results styling */
+.results-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+.primary-result {
+  margin: 2rem 0;
+}
+
+.dominant-type {
+  padding: 2rem;
+  border-radius: 12px;
+  margin-top: 1rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.dominant-type-image {
+  width: 150px;
+  height: 150px;
+  object-fit: contain;
+  border-radius: 10px;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Integrator specific styling */
+.integrator-details {
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  width: 100%;
+}
+
+.balanced-types {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.8rem;
+  margin-top: 0.8rem;
+}
+
+.balanced-type-chip {
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: white;
+}
+
+@media (prefers-color-scheme: dark) {
+  .start-card {
+    background-color: #2a2a2a;
+    color: rgba(255, 255, 255, 0.87);
+  }
+
+  .start-card h1, .instructions h2 {
+    color: #f0f0f0;
+  }
+  
+  .subtitle {
+    color: #b0b0b0;
+  }
+  
+  .types-preview {
+    background-color: #333;
+  }
+  
+  .footnote {
+    color: #999;
+  }
+  
+  .score-bar-container {
+    background-color: #444;
+  }
+  
+  .dominant-type-image {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  }
+  
+  .integrator-details {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  /* ... existing dark mode styles ... */
+}
