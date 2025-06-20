@@ -1,4 +1,4 @@
-import type { FourSightType } from '../types';
+
 import testImage from './test.jpeg';
 import clariferImage from './profiles/clarifier.png';
 import ideatorImage from './profiles/ideators.png';

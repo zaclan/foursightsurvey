@@ -33,27 +33,6 @@ const QuestionCard: React.FC<QuestionCardProps> = ({
     }
   };
 
-  // Helper function to get the dominant type for an answer
-  const getDominantType = (answer: Answer): keyof FourSightTypeMap => {
-    let highestType: keyof FourSightTypeMap = 'CLARIFIER';
-    let highestPoints = answer.points.CLARIFIER;
-    
-    if (answer.points.IDEATOR > highestPoints) {
-      highestPoints = answer.points.IDEATOR;
-      highestType = 'IDEATOR';
-    }
-    if (answer.points.DEVELOPER > highestPoints) {
-      highestPoints = answer.points.DEVELOPER;
-      highestType = 'DEVELOPER';
-    }
-    if (answer.points.IMPLEMENTER > highestPoints) {
-      highestPoints = answer.points.IMPLEMENTER;
-      highestType = 'IMPLEMENTER';
-    }
-    
-    return highestType;
-  };
-
   return (
     <div className="question-card">
       <h3>{question.text}</h3>
@@ -69,8 +48,6 @@ const QuestionCard: React.FC<QuestionCardProps> = ({
       
       <div className="answer-options">
         {question.answers.map((answer: Answer) => {
-          const dominantType = getDominantType(answer);
-          const typeInfo = foursightTypes[dominantType];
           const isSelected = currentResponses.includes(answer.id);
           const isDisabled = !isSelected && currentResponses.length >= maxSelections;
           

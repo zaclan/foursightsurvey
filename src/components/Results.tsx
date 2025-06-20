@@ -26,7 +26,7 @@ const Results: React.FC<ResultsProps> = ({ scores, onReset, foursightTypes }) =>
   
   // Find profiles that are within one point of the highest score (for integrator details)
   const closeProfiles = Object.entries(scores)
-    .filter(([type, score]) => Math.abs(score - highestScore.score) <= 1)
+    .filter(([_ , score]) => Math.abs(score - highestScore.score) <= 1)
     .map(([type]) => type as keyof Scores);
 
   // Convert scores to percentages for visualization
