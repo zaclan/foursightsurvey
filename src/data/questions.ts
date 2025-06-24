@@ -1,10 +1,12 @@
-
 import testImage from './test.jpeg';
 import clariferImage from './profiles/clarifier.png';
 import ideatorImage from './profiles/ideators.png';
 import developerImage from './profiles/developers.png';
 import implementerImage from './profiles/implementers.png';   
 import integratorImage from './profiles/integrator.png';
+import q3_1Image from './images/q3_1.jpg';
+import q3_2Image from './images/q3_2.jpg';
+import q5_1Image from './images/q5_1.jpg';
 
 export interface Answer {
   id: string;
@@ -131,7 +133,8 @@ export const questions: QuizQuestion[] = [
     images: [
       // Example: '/images/question3-image1.jpg',
       // Multiple images can be added here
-      testImage
+      q3_1Image,
+      q3_2Image
     ],
     answers: [
       { 
@@ -232,11 +235,169 @@ export const questions: QuizQuestion[] = [
     images: [
       // Example: '/images/question5-image1.jpg',
       // Multiple images can be added here
+      q5_1Image
     ],
     answers: [
       { 
         id: 'q5a1', 
-        text: 'I need to see some motion rather than just talking. [Immediately step on whatever button or immediately move forward when the gap closes.]', 
+        text: 'I tend to always give many different interesting options when confronted with new challenges. [Steps on the 4 buttons to see what will happen.]', 
+        points: { 
+          CLARIFIER: 0, 
+          IDEATOR: 2, 
+          DEVELOPER: 0, 
+          IMPLEMENTER: 1 
+        } 
+      },
+      { 
+        id: 'q5a2', 
+        text: 'I tend to be meticulous in planning how to deal with challenges. “I observe there are four buttons on our side and there are four sections on the other side. Let’s call the buttons 1,2,3 and 4, I will step on each button and see which gap closes. If i step on button 1 and that gap closes, we can call that gap “gap 1”, so we find out which button matches which gap” ', 
+        points: { 
+          CLARIFIER: 1, 
+          IDEATOR: 0, 
+          DEVELOPER: 2, 
+          IMPLEMENTER: 0
+        } 
+      },
+      { 
+        id: 'q5a3', 
+        text: 'I tend to want to understand the 4 buttons and the situation. “ What do you see on your side? Can you see our side? We see 4 buttons/ a large gap, do we see different things or same things?”', 
+        points: { 
+          CLARIFIER: 2, 
+          IDEATOR: 0, 
+          DEVELOPER: 0, 
+          IMPLEMENTER: 0 
+        } 
+      },
+      { 
+        id: 'q5a4', 
+        text: 'I tend to trial and error rather than thinking over to figure things out first. [Goes past the 4 buttons and tries to reach the bottom] or says “guys there a huge hole in front of us.” ', 
+        points: { 
+          CLARIFIER: 0, 
+          IDEATOR: 0, 
+          DEVELOPER: 0, 
+          IMPLEMENTER: 2 
+        } 
+      },
+    ]
+  },
+  {
+    id: 'q6',
+    text: 'At the beginning of the game, when someone falls down, did you do/say any of the following? ',
+    images: [
+      // Example images can be added here
+    ],
+    answers: [
+      { 
+        id: 'q6a1', 
+        text: 'I prefer to gather information before deciding whether to save the person or do anything else. “What do you see below? Is it the destination? Can you get up yourself? Do you need the whole team to drop and  if so why?”', 
+        points: { 
+          CLARIFIER: 2, 
+          IDEATOR: 0, 
+          DEVELOPER: 0, 
+          IMPLEMENTER: 0 
+        } 
+      },
+      { 
+        id: 'q6a2', 
+        text: 'I prefer to make quick decisions and focus on finding the solution. “ [Jumps down too or runs around the place in circles and explore around.]”', 
+        points: { 
+          CLARIFIER: 0, 
+          IDEATOR: 0, 
+          DEVELOPER: 1, 
+          IMPLEMENTER: 2 
+        } 
+      },
+      { 
+        id: 'q6a3', 
+        text: 'I prefer to think of many ways to save the person that fell and take action without detailed planning. “Maybe just [someone] jump down or maybe you(the person that fell) wait at the bottom for us or we see if we can get to the destination without that person” ', 
+        points: { 
+          CLARIFIER: 0, 
+          IDEATOR: 2, 
+          DEVELOPER: 0, 
+          IMPLEMENTER: 1 
+        } 
+      },
+      { 
+        id: 'q6a4', 
+        text: 'I prefer to focus on one idea and carry it out. “[ someone] fell, ok so you need to try coming up by going up the staircase and see if it is possible” ', 
+        points: { 
+          CLARIFIER: 0, 
+          IDEATOR: 0, 
+          DEVELOPER: 2, 
+          IMPLEMENTER: 0 
+        } 
+      },
+    ]
+  },
+  {
+    id: 'q7',
+    text: 'When you fell down, did you do/say any of the following?',
+    images: [
+      // Example images can be added here
+    ],
+    answers: [
+      { 
+        id: 'q7a1', 
+        text: 'I usually want to understand first before taking another attempt. “Guys I fell, did anyone leave the button ? Let’s not do that next time. ” ', 
+        points: { 
+          CLARIFIER: 2, 
+          IDEATOR: 0, 
+          DEVELOPER: 1, 
+          IMPLEMENTER: 0 
+        } 
+      },
+      { 
+        id: 'q7a2', 
+        text: 'I usually think of many possible solutions. “Since I already fell, let me try to see if I could go further down? How about I just stay here? Or maybe I try going up? Or maybe you guys try jumping down too?” ', 
+        points: { 
+          CLARIFIER: 0, 
+          IDEATOR: 2, 
+          DEVELOPER: 0, 
+          IMPLEMENTER: 0 
+        } 
+      },
+      { 
+        id: 'q7a3', 
+        text: 'I usually try to test if a solution works. “I cannot go up myself, someone needs to come down to open the door for me, [someone] how about you try to come down first, the rest stay put” ', 
+        points: { 
+          CLARIFIER: 0, 
+          IDEATOR: 0, 
+          DEVELOPER: 2, 
+          IMPLEMENTER: 0 
+        } 
+      },
+      { 
+        id: 'q7a4', 
+        text: 'I usually try to act fast. “I run around towards the destination directly, I try to come up myself after fall.”', 
+        points: { 
+          CLARIFIER: 0, 
+          IDEATOR: 0, 
+          DEVELOPER: 0, 
+          IMPLEMENTER: 2 
+        } 
+      },
+    ]
+  },
+  {
+    id: 'q8',
+    text: 'When someone fell down, and everyone is back to the starting point, did you do/say any of the following? ',
+    images: [
+      // Example images can be added here
+    ],
+    answers: [
+      { 
+        id: 'q8a1', 
+        text: 'I’m not someone who settles with a rough sensing of how the solution works. “ guys our next plan is that whenever one person steps on the button, he or she does not move until someone else is safe” ', 
+        points: { 
+          CLARIFIER: 0, 
+          IDEATOR: 0, 
+          DEVELOPER: 2, 
+          IMPLEMENTER: 0 
+        } 
+      },
+      { 
+        id: 'q8a2', 
+        text: 'I’m not a draggy person. Just goes to one path and tries to go down again ', 
         points: { 
           CLARIFIER: 0, 
           IDEATOR: 0, 
@@ -245,32 +406,71 @@ export const questions: QuizQuestion[] = [
         } 
       },
       { 
-        id: 'q5a2', 
-        text: 'I need to fully understand how the teams coordinate. “ the staircases here are broken right? Does the other side have buttons? Are the other side supposed to help close our gaps?” ', 
-        points: { 
-          CLARIFIER: 2, 
-          IDEATOR: 0, 
-          DEVELOPER: 0, 
-          IMPLEMENTER: 1 
-        } 
-      },
-      { 
-        id: 'q5a3', 
-        text: 'I need to think of creative ways to let people on both stairs to go through. “Let`s try to step the buttons above us which we passed just now?”', 
+        id: 'q8a3', 
+        text: 'I’m not someone who like to repeat old boring solutions. “Guys should we try something new? Maybe let’s all go one side? Maybe we draw a map? Maybe we write down the buttons this time?” ', 
         points: { 
           CLARIFIER: 0, 
           IDEATOR: 2, 
-          DEVELOPER: 1, 
+          DEVELOPER: 0, 
           IMPLEMENTER: 0 
         } 
       },
       { 
-        id: 'q5a4', 
-        text: 'I need to design the solution and make sure it is possible for the two teams to coordinate. “Okay everyone do not move, one person move at a time, [someone] step on a button and see what happens, [someone] go forward to the safe spot, [someone] do not release” ', 
+        id: 'q8a4', 
+        text: 'I’m not a quick-to-act person without understanding the problem, details are important to me. “Guys are we supposed to split up the same way? What happened just now? Should we slow down and try to recap why she/he fell down? So we know what’s not working.” ', 
+        points: { 
+          CLARIFIER: 2, 
+          IDEATOR: 0, 
+          DEVELOPER: 1, 
+          IMPLEMENTER: 0 
+        } 
+      },
+    ]
+  },
+  {
+    id: 'q9',
+    text: 'When the same person repeatedly fall in your team, due to careless movement: ',
+    images: [
+      // Example images can be added here
+    ],
+    answers: [
+      { 
+        id: 'q9a1', 
+        text: 'I am the person always run too fast', 
+        points: { 
+          CLARIFIER: 0, 
+          IDEATOR: 0, 
+          DEVELOPER: 0, 
+          IMPLEMENTER: 2 
+        } 
+      },
+      { 
+        id: 'q9a2', 
+        text: 'I would never be this person in the team and I will carefully instruct the person to slow down.', 
         points: { 
           CLARIFIER: 0, 
           IDEATOR: 0, 
           DEVELOPER: 2, 
+          IMPLEMENTER: 0 
+        } 
+      },
+      { 
+        id: 'q9a3', 
+        text: 'I maybe am the person and I think it’s completely ok, because it is a fun game.', 
+        points: { 
+          CLARIFIER: 0, 
+          IDEATOR: 2, 
+          DEVELOPER: 0, 
+          IMPLEMENTER: 0 
+        } 
+      },
+      { 
+        id: 'q9a4', 
+        text: 'I would never be this person and ask this person why he/she fall.', 
+        points: { 
+          CLARIFIER: 2, 
+          IDEATOR: 0, 
+          DEVELOPER: 0, 
           IMPLEMENTER: 0 
         } 
       },
