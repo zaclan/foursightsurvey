@@ -39,7 +39,6 @@ const Results: React.FC<ResultsProps> = ({ scores, onReset, foursightTypes }) =>
 
   return (
     <div className="results-container">
-      <h2>Your FourSight Thinking Profile</h2>
       
       <div className="primary-result">
         <h3>Your dominant thinking preference:</h3>

@@ -429,14 +429,14 @@ export const questions: QuizQuestion[] = [
   },
   {
     id: 'q9',
-    text: 'When the same person repeatedly fall in your team, due to careless movement: ',
+    text: 'Which one best describes you? ',
     images: [
       // Example images can be added here
     ],
     answers: [
       { 
         id: 'q9a1', 
-        text: 'I am the person always run too fast', 
+        text: 'I repeatedly fall down because I am the person who always runs too fast. ', 
         points: { 
           CLARIFIER: 0, 
           IDEATOR: 0, 
@@ -446,7 +446,7 @@ export const questions: QuizQuestion[] = [
       },
       { 
         id: 'q9a2', 
-        text: 'I would never be this person in the team and I will carefully instruct the person to slow down.', 
+        text: 'I would never/seldom fall down and I will carefully instruct my team members to slow down.', 
         points: { 
           CLARIFIER: 0, 
           IDEATOR: 0, 
@@ -456,20 +456,20 @@ export const questions: QuizQuestion[] = [
       },
       { 
         id: 'q9a3', 
-        text: 'I maybe am the person and I think it’s completely ok, because it is a fun game.', 
+        text: 'I would never/seldom fall down and I will question when a person fell ', 
         points: { 
-          CLARIFIER: 0, 
-          IDEATOR: 2, 
+          CLARIFIER: 2, 
+          IDEATOR: 0, 
           DEVELOPER: 0, 
           IMPLEMENTER: 0 
         } 
       },
       { 
         id: 'q9a4', 
-        text: 'I would never be this person and ask this person why he/she fall.', 
+        text: 'I fell down quite a few times and I think it’s completely ok, because I’m just exploring the possibilities  ', 
         points: { 
-          CLARIFIER: 2, 
-          IDEATOR: 0, 
+          CLARIFIER: 0, 
+          IDEATOR: 2, 
           DEVELOPER: 0, 
           IMPLEMENTER: 0 
         } 
