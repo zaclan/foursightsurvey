@@ -1,4 +1,4 @@
-import testImage from './test.jpeg';
+
 import clariferImage from './profiles/clarifier.png';
 import ideatorImage from './profiles/ideators.png';
 import developerImage from './profiles/developers.png';
