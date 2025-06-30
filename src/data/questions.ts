@@ -1,4 +1,3 @@
-
 import clariferImage from './profiles/clarifier.png';
 import ideatorImage from './profiles/ideators.png';
 import developerImage from './profiles/developers.png';
@@ -358,7 +357,7 @@ export const questions: QuizQuestion[] = [
       },
       { 
         id: 'q7a3', 
-        text: 'I usually try to test if a solution works. “I cannot go up myself, someone needs to come down to open the door for me, [someone] how about you try to come down first, the rest stay put” ', 
+        text: 'I usually try to test if a solution works. “Let me see if i can go up myself first, if I can’t we have to try something else”', 
         points: { 
           CLARIFIER: 0, 
           IDEATOR: 0, 
@@ -482,32 +481,77 @@ export const foursightTypeInfo = {
   CLARIFIER: {
     label: 'Clarifier',
     description: 'These individuals prefer to define and understand the problem. They are detail-oriented and like to gather data and facts before making decisions.',
-    color: '#3498db', // Blue
-    image: clariferImage
+    color: '#808080', // Changed from blue to grey
+    image: clariferImage,
+    strengths: [
+      'Enjoys exploring challenges and opportunities',
+      'Likes to examine the details',
+      'Wants a clear understanding of the issue',
+      'Prefers a methodical approach to solving problems'],
+    limitations: [
+      'May suffer from "analysis paralysis"',
+      'Takes no action without getting enough detailed information.',]
+
   },
   IDEATOR: {
     label: 'Ideator',
     description: 'These individuals excel at generating ideas and prefer brainstorming and thinking outside the box. They are imaginative and enjoy challenging the status quo.',
-    color: '#f1c40f', // Yellow
-    image: ideatorImage
+    color: '#8bc34a', // Changed from yellow to light green
+    image: ideatorImage,
+    strengths: [
+      'Likes to look at the big picture',
+      'Enjoys toying with ideas and possibilities',
+      'Likes to stretch his or her imagination',
+      'Enjoys thinking in more global and abstracts terms.',
+      'Takes an intuitive approach innovation.'],
+    limitations: [
+      'May overlook details.',
+      'May feel struggle with highly structured environment.',
+      ]
   },
   DEVELOPER: {
     label: 'Developer',
     description: 'These individuals prefer to design and develop solutions. They are analytical and like to test and refine ideas to ensure their feasibility.',
-    color: '#2ecc71', // Green
-    image: developerImage
+    color: '#03a9f4', // Changed from green to light blue
+    image: developerImage,
+    strengths: [
+      'Enjoys putting together workable solutions',
+      'Likes to examine the pluses and minuses of an idea',
+      'Likes to compare competing solutions',
+      'Enjoys analyzing potential solutions',
+      'Enjoy planning steps to implement an idea'],
+    limitations: [
+      'May get stuck in developing the perfect solution',
+      'Struggle when require swift action without time for comparing options.',]
   },
   IMPLEMENTER: {
     label: 'Implementer',
     description: 'These individuals prefer to take action and implement solutions. They are practical, task-oriented, and like to see tangible results.',
-    color: '#e74c3c', // Red
-    image: implementerImage
+    color: '#ffeb3b', // Changed from red to yellow
+    image: implementerImage,
+    strengths: [
+      'Likes to see things happen',
+      'Enjoys giving structure to ideas so they become a reality',
+      'Takes the Nike approach: "Just Do It"',
+      'Enjoys seeing ideas come to fruition',
+      'Likes to focus on "workable" ideas and solutions'],
+    limitations: [
+      'May leap to action too quickly',
+      'May struggle when adapt to changing plans',
+    ]
   },
   
   INTEGRATOR: {
     label: 'Integrator',
     description: 'These individuals has a balanced profile across the four roles, able to shift between clarifying, ideating, developing, and implementing as needed. Such an individual would be adept at integrating the different stages of the problem-solving and innovation process',
     color: '#9b59b6', // Purple
-    image: integratorImage
+    image: integratorImage,
+    strengths: [
+      'While most people have high and low preferences, roughly 20% of FourSight respondents take a very even approach to the thinking process' ,
+      'Those Integrators can be very flexible team players, easily accommodating whatever the task requires',
+],
+    limitations: [
+      'May not have a fixed role to develop a specific area of expertise.',
+    ]
   }
 };

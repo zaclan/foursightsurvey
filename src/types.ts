@@ -12,6 +12,8 @@ export interface FourSightTypeInfo {
   description: string;
   color: string;
   image: string;
+  strengths: string[]; // Changed from string to string[]
+  limitations: string[]; // Changed from string to string[]
 }
 
 export type FourSightTypeMap = {

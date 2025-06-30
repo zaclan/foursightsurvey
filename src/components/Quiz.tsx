@@ -3,13 +3,18 @@ import QuestionCard from './QuestionCard';
 import Results from './Results';
 import { questions, foursightTypeInfo } from '../data/questions';
 import type { Scores } from '../types';
+import type { UserData } from './UserRegistration';
 
 // Type definition for responses with multiple answers per question
 type MultiResponses = Record<string, string[]>;
 
 const MAX_SELECTIONS = 2;
 
-const Quiz: React.FC = () => {
+interface QuizProps {
+  userData: UserData | null;
+}
+
+const Quiz: React.FC<QuizProps> = ({ userData }) => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(0);
   const [responses, setResponses] = useState<MultiResponses>({});
   const [isCompleted, setIsCompleted] = useState<boolean>(false);
@@ -92,7 +97,7 @@ const Quiz: React.FC = () => {
   const isAnswered = currentResponses.length > 0;
 
   if (isCompleted && scores) {
-    return <Results scores={scores} onReset={resetQuiz} foursightTypes={foursightTypeInfo} />;
+    return <Results scores={scores} onReset={resetQuiz} foursightTypes={foursightTypeInfo} userData={userData} />;
   }
 
   return (

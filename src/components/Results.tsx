@@ -1,13 +1,15 @@
 import React from 'react';
 import type { Scores, FourSightTypeMap } from '../types';
+import type { UserData } from './UserRegistration';
 
 interface ResultsProps {
   scores: Scores;
   onReset: () => void;
   foursightTypes: FourSightTypeMap;
+  userData?: UserData | null;
 }
 
-const Results: React.FC<ResultsProps> = ({ scores, onReset, foursightTypes }) => {
+const Results: React.FC<ResultsProps> = ({ scores, onReset, foursightTypes, userData }) => {
   // Find the highest score type and its score
   const highestScore = Object.entries(scores).reduce(
     (highest, [type, score]) => (score > highest.score ? { type, score } : highest),
@@ -39,6 +41,20 @@ const Results: React.FC<ResultsProps> = ({ scores, onReset, foursightTypes }) =>
 
   return (
     <div className="results-container">
+      {userData && (
+        <div className="results-user-info">
+          <div 
+            className="results-user-avatar" 
+            style={{ backgroundColor: userData.avatarColor }}
+          >
+            {userData.name.charAt(0).toUpperCase()}
+          </div>
+          <div className="results-user-details">
+            <h3>{userData.name}</h3>
+            <p>Group {userData.groupNumber} | Class {userData.classCode}</p>
+          </div>
+        </div>
+      )}
       
       <div className="primary-result">
         <h3>Your dominant thinking preference:</h3>
@@ -53,6 +69,25 @@ const Results: React.FC<ResultsProps> = ({ scores, onReset, foursightTypes }) =>
           />
           <h2>{foursightTypes[displayTypeKey].label}</h2>
           <p>{foursightTypes[displayTypeKey].description}</p>
+          
+          <div className="type-details">
+            <div className="strengths">
+              <h4>Strengths</h4>
+              <ul>
+                {foursightTypes[displayTypeKey].strengths.map((strength, index) => (
+                  <li key={index}>{strength}</li>
+                ))}
+              </ul>
+            </div>
+            <div className="weaknesses">
+              <h4>Limitations</h4>
+              <ul>
+                {foursightTypes[displayTypeKey].limitations.map((limitation, index) => (
+                  <li key={index}>{limitation}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
           
           {isIntegrator && (
             <div className="integrator-details">
@@ -75,24 +110,58 @@ const Results: React.FC<ResultsProps> = ({ scores, onReset, foursightTypes }) =>
       
       <div className="score-breakdown">
         <h3>Your Complete Profile:</h3>
-        <div className="score-bars">
-          {Object.entries(scores).map(([type, score]) => (
-            <div key={type} className="score-item">
-              <div className="score-label">
-                {foursightTypes[type as keyof FourSightTypeMap].label}
-              </div>
-              <div className="score-bar-container">
+        <div className="pie-chart-container">
+          <div className="pie-chart">
+            {Object.entries(scores).map(([type, _], index, array) => {
+              const typeKey = type as keyof FourSightTypeMap;
+              const percentage = scorePercentages[type];
+              
+              // Calculate the pie chart sectors
+              let previousPercentage = 0;
+              for (let i = 0; i < index; i++) {
+                previousPercentage += scorePercentages[array[i][0]];
+              }
+              
+              // Convert percentages to degrees for the pie slices
+              const startDegree = (previousPercentage / 100) * 360;
+              const endDegree = startDegree + (percentage / 100) * 360;
+              
+              // Generate the CSS for the pie slice
+              const background = `conic-gradient(
+                transparent ${startDegree}deg,
+                ${foursightTypes[typeKey].color} ${startDegree}deg,
+                ${foursightTypes[typeKey].color} ${endDegree}deg,
+                transparent ${endDegree}deg
+              )`;
+              
+              return (
                 <div 
-                  className="score-bar" 
-                  style={{ 
-                    width: `${scorePercentages[type]}%`,
-                    backgroundColor: foursightTypes[type as keyof FourSightTypeMap].color 
-                  }}
-                ></div>
-              </div>
-              <div className="score-value">{score} pts</div>
-            </div>
-          ))}
+                  key={type}
+                  className="pie-slice"
+                  style={{ background }}
+                />
+              );
+            })}
+          </div>
+          
+          <div className="pie-legend">
+            {Object.entries(scores).map(([type, score]) => {
+              const typeKey = type as keyof FourSightTypeMap;
+              const percentage = scorePercentages[type];
+              
+              return (
+                <div key={type} className="legend-item">
+                  <div 
+                    className="legend-color" 
+                    style={{ backgroundColor: foursightTypes[typeKey].color }}
+                  />
+                  <div className="legend-label">
+                    {foursightTypes[typeKey].label}: {percentage}% ({score} pts)
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
       
