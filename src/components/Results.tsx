@@ -16,7 +16,7 @@ interface ProfileResult {
   isDualPrimary: boolean;
 }
 
-const Results: React.FC<ResultsProps> = ({ scores, onReset, foursightTypes, userData }) => {
+const Results: React.FC<ResultsProps> = ({ scores, onReset, foursightTypes }) => {
   // Determine the profile result based on the three criteria
   const profileResult = determineProfileResult(scores);
   
