@@ -1,5 +1,5 @@
 import React from 'react';
-import type { Scores, FourSightTypeMap } from '../types';
+import type { Scores, FourSightTypeMap, FourSightType } from '../types';
 import type { UserData } from './UserRegistration';
 
 interface ResultsProps {
@@ -9,28 +9,17 @@ interface ResultsProps {
   userData?: UserData | null;
 }
 
-const Results: React.FC<ResultsProps> = ({ scores, onReset, foursightTypes, userData }) => {
-  // Find the highest score type and its score
-  const highestScore = Object.entries(scores).reduce(
-    (highest, [type, score]) => (score > highest.score ? { type, score } : highest),
-    { type: '', score: 0 }
-  );
-  
-  const highestScoreType = highestScore.type as keyof Scores;
-  
-  // Check if any other profile is within one point of the highest score
-  const isIntegrator = Object.entries(scores).some(([type, score]) => {
-    return type !== highestScoreType && Math.abs(score - highestScore.score) <= 1;
-  });
-  
-  // Determine which profile to display
-  const displayTypeKey = isIntegrator ? 'INTEGRATOR' : highestScoreType;
-  
-  // Find profiles that are within one point of the highest score (for integrator details)
-  const closeProfiles = Object.entries(scores)
-    .filter(([_ , score]) => Math.abs(score - highestScore.score) <= 1)
-    .map(([type]) => type as keyof Scores);
+interface ProfileResult {
+  primaryType: FourSightType | 'INTEGRATOR';
+  secondaryType?: FourSightType | null;
+  isIntegrator: boolean;
+  isDualPrimary: boolean;
+}
 
+const Results: React.FC<ResultsProps> = ({ scores, onReset, foursightTypes, userData }) => {
+  // Determine the profile result based on the three criteria
+  const profileResult = determineProfileResult(scores);
+  
   // Convert scores to percentages for visualization
   const totalScore = Object.values(scores).reduce((sum, score) => sum + score, 0);
   const scorePercentages: Record<string, number> = {};
@@ -41,40 +30,33 @@ const Results: React.FC<ResultsProps> = ({ scores, onReset, foursightTypes, user
 
   return (
     <div className="results-container">
-      {userData && (
-        <div className="results-user-info">
-          <div 
-            className="results-user-avatar" 
-            style={{ backgroundColor: userData.avatarColor }}
-          >
-            {userData.name.charAt(0).toUpperCase()}
-          </div>
-          <div className="results-user-details">
-            <h3>{userData.name}</h3>
-            <p>Group {userData.groupNumber} | Class {userData.classCode}</p>
-          </div>
-        </div>
-      )}
-      
       <div className="primary-result">
-        <h3>Your dominant thinking preference:</h3>
+        
+        
+        {/* Primary profile */}
         <div 
           className="dominant-type"
-          style={{ backgroundColor: foursightTypes[displayTypeKey].color + '30' }}
+          style={{ backgroundColor: foursightTypes[profileResult.primaryType].color + '30' }}
         >
+          <h3>Your dominant thinking preference:</h3>
           <img 
-            src={foursightTypes[displayTypeKey].image} 
-            alt={foursightTypes[displayTypeKey].label} 
+            src={foursightTypes[profileResult.primaryType].image} 
+            alt={foursightTypes[profileResult.primaryType].label} 
             className="dominant-type-image"
           />
-          <h2>{foursightTypes[displayTypeKey].label}</h2>
-          <p>{foursightTypes[displayTypeKey].description}</p>
+          <h2>
+            {profileResult.isDualPrimary && profileResult.secondaryType 
+              ? `${foursightTypes[profileResult.primaryType].label} & ${foursightTypes[profileResult.secondaryType].label}`
+              : foursightTypes[profileResult.primaryType].label
+            }
+          </h2>
+          <p>{foursightTypes[profileResult.primaryType].description}</p>
           
           <div className="type-details">
             <div className="strengths">
               <h4>Strengths</h4>
               <ul>
-                {foursightTypes[displayTypeKey].strengths.map((strength, index) => (
+                {foursightTypes[profileResult.primaryType].strengths.map((strength, index) => (
                   <li key={index}>{strength}</li>
                 ))}
               </ul>
@@ -82,24 +64,69 @@ const Results: React.FC<ResultsProps> = ({ scores, onReset, foursightTypes, user
             <div className="weaknesses">
               <h4>Limitations</h4>
               <ul>
-                {foursightTypes[displayTypeKey].limitations.map((limitation, index) => (
+                {foursightTypes[profileResult.primaryType].limitations.map((limitation, index) => (
                   <li key={index}>{limitation}</li>
                 ))}
               </ul>
             </div>
           </div>
           
-          {isIntegrator && (
+          {/* If there's a secondary profile and not a dual primary */}
+          {profileResult.secondaryType && !profileResult.isDualPrimary && (
+            <div className="secondary-profile">
+              <h3>Your secondary thinking preference:</h3>
+              <div className="secondary-profile-info" style={{ 
+                backgroundColor: foursightTypes[profileResult.secondaryType].color + '20',
+                padding: '1rem',
+                borderRadius: '8px',
+                marginTop: '1rem'
+              }}>
+                <div className="secondary-profile-header">
+                  <img 
+                    src={foursightTypes[profileResult.secondaryType].image} 
+                    alt={foursightTypes[profileResult.secondaryType].label} 
+                    className="secondary-type-image"
+                  />
+                  <div>
+                    <h4>{foursightTypes[profileResult.secondaryType].label}</h4>
+                    <p>{foursightTypes[profileResult.secondaryType].description}</p>
+                  </div>
+                </div>
+                
+                <div className="secondary-type-details">
+                  <div className="secondary-strengths">
+                    <h5>Strengths</h5>
+                    <ul>
+                      {foursightTypes[profileResult.secondaryType].strengths.slice(0, 3).map((strength, index) => (
+                        <li key={index}>{strength}</li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div className="secondary-limitations">
+                    <h5>Limitations</h5>
+                    <ul>
+                      {foursightTypes[profileResult.secondaryType].limitations.slice(0, 2).map((limitation, index) => (
+                        <li key={index}>{limitation}</li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+          
+          {/* For integrator profile, show balanced types */}
+          {profileResult.isIntegrator && (
             <div className="integrator-details">
               <p><strong>Your balanced preferences:</strong></p>
               <div className="balanced-types">
-                {closeProfiles.map((type) => (
+                {Object.entries(scores).map(([type, score]) => (
                   <span 
                     key={type} 
                     className="balanced-type-chip"
-                    style={{ backgroundColor: foursightTypes[type].color }}
+                    style={{ backgroundColor: foursightTypes[type as keyof FourSightTypeMap].color }}
                   >
-                    {foursightTypes[type].label}: {scores[type]} pts
+                    {foursightTypes[type as keyof FourSightTypeMap].label}: {score} pts
                   </span>
                 ))}
               </div>
@@ -171,5 +198,97 @@ const Results: React.FC<ResultsProps> = ({ scores, onReset, foursightTypes, user
     </div>
   );
 };
+
+// Helper function to determine the profile result based on the three criteria
+function determineProfileResult(scores: Scores): ProfileResult {
+  // Convert scores object to array of [type, score] pairs
+  const scoreEntries = Object.entries(scores) as [FourSightType, number][];
+  
+  // Sort scores in descending order
+  const sortedScores = [...scoreEntries].sort((a, b) => b[1] - a[1]);
+  
+  // Calculate total score
+  const totalScore = Object.values(scores).reduce((sum, score) => sum + score, 0);
+  
+  // Get highest and second highest scores
+  const highestType = sortedScores[0][0];
+  const highestScore = sortedScores[0][1];
+  const secondHighestType = sortedScores[1][0];
+  const secondHighestScore = sortedScores[1][1];
+  const lowestScore = sortedScores[sortedScores.length - 1][1];
+  
+  // Criterion 1: If a single profile dominates more than 30% of total points
+  const highestPercentage = (highestScore / totalScore) * 100;
+
+  // Criterion 2: If all profiles are within 4 points, show as integrator
+  if (highestScore - lowestScore <= 4) {
+    return {
+      primaryType: 'INTEGRATOR',
+      isIntegrator: true,
+      isDualPrimary: false
+    };
+  }
+
+  if (highestPercentage > 30) {
+    // Criterion 3: Check if top two profiles are within 2 points
+    if (highestScore - secondHighestScore <= 2) {
+      if (highestScore === secondHighestScore) {
+        // If tied, show both as primary
+        return {
+          primaryType: highestType,
+          secondaryType: secondHighestType,
+          isIntegrator: false,
+          isDualPrimary: true
+        };
+      } else {
+        // Show second highest as secondary
+        return {
+          primaryType: highestType,
+          secondaryType: secondHighestType,
+          isIntegrator: false,
+          isDualPrimary: false
+        };
+      }
+    } else {
+      // Single dominant profile
+      return {
+        primaryType: highestType,
+        secondaryType: null,
+        isIntegrator: false,
+        isDualPrimary: false
+      };
+    }
+  }
+  
+  
+  // Criterion 3: If top two profiles are within 2 points
+  if (highestScore - secondHighestScore <= 2) {
+    if (highestScore === secondHighestScore) {
+      // If tied, show both as primary
+      return {
+        primaryType: highestType,
+        secondaryType: secondHighestType,
+        isIntegrator: false,
+        isDualPrimary: true
+      };
+    } else {
+      // Show second highest as secondary
+      return {
+        primaryType: highestType,
+        secondaryType: secondHighestType,
+        isIntegrator: false,
+        isDualPrimary: false
+      };
+    }
+  }
+  
+  // Default case: Show highest scoring profile
+  return {
+    primaryType: highestType,
+    secondaryType: null,
+    isIntegrator: false,
+    isDualPrimary: false
+  };
+}
 
 export default Results;

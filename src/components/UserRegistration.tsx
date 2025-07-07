@@ -17,7 +17,7 @@ const UserRegistration: React.FC<UserRegistrationProps> = ({ onSubmit, onBack })
     name: '',
     groupNumber: '',
     classCode: '',
-    avatarColor: '#03a9f4', // Default blue color
+    avatarColor: '#ffeb3b', 
   });
 
   const [errors, setErrors] = useState({
@@ -26,13 +26,16 @@ const UserRegistration: React.FC<UserRegistrationProps> = ({ onSubmit, onBack })
     classCode: '',
   });
 
-  // Only the four specified avatar colors
   const avatarColors = [
-    { value: '#808080', label: 'Grey' },
-    { value: '#03a9f4', label: 'Blue' },
+    { value: '#ffeb3b', label: 'Yellow' },
     { value: '#e74c3c', label: 'Red' },
-    { value: '#ffeb3b', label: 'Yellow' }
+    { value: '#03a9f4', label: 'Blue' },
+    { value: '#808080', label: 'Grey' }
   ];
+
+  const groupNumberOptions = Array.from({ length: 9 }, (_, i) => (i + 1).toString());
+  
+  const classCodeOptions = ['ami1701', 'ami1702'];
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -59,12 +62,12 @@ const UserRegistration: React.FC<UserRegistrationProps> = ({ onSubmit, onBack })
       valid = false;
     }
 
-    if (!userData.groupNumber.trim()) {
+    if (!userData.groupNumber) {
       newErrors.groupNumber = 'Group number is required';
       valid = false;
     }
 
-    if (!userData.classCode.trim()) {
+    if (!userData.classCode) {
       newErrors.classCode = 'Class code is required';
       valid = false;
     }
@@ -104,29 +107,39 @@ const UserRegistration: React.FC<UserRegistrationProps> = ({ onSubmit, onBack })
           
           <div className="form-group">
             <label htmlFor="groupNumber">Group Number</label>
-            <input
-              type="text"
+            <select
               id="groupNumber"
               name="groupNumber"
               value={userData.groupNumber}
               onChange={handleChange}
-              placeholder="Enter your group number"
               className={errors.groupNumber ? 'error' : ''}
-            />
+            >
+              <option value="">Select Group Number</option>
+              {groupNumberOptions.map((number) => (
+                <option key={number} value={number}>
+                  {number}
+                </option>
+              ))}
+            </select>
             {errors.groupNumber && <span className="error-message">{errors.groupNumber}</span>}
           </div>
           
           <div className="form-group">
             <label htmlFor="classCode">Class Code</label>
-            <input
-              type="text"
+            <select
               id="classCode"
               name="classCode"
               value={userData.classCode}
               onChange={handleChange}
-              placeholder="Enter your class code"
               className={errors.classCode ? 'error' : ''}
-            />
+            >
+              <option value="">Select Class Code</option>
+              {classCodeOptions.map((code) => (
+                <option key={code} value={code}>
+                  {code}
+                </option>
+              ))}
+            </select>
             {errors.classCode && <span className="error-message">{errors.classCode}</span>}
           </div>
           

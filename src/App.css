@@ -772,6 +772,12 @@
     color: #fff;
   }
   
+  .form-group select {
+    background-color: #333;
+    border-color: #444;
+    color: #fff;
+  }
+  
   .back-button {
     background-color: #444;
     color: #eee;
@@ -812,4 +818,100 @@
   .back-button, .next-button {
     width: 100%;
   }
+  
+  .secondary-profile-header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .secondary-type-details {
+    flex-direction: column;
+  }
+  
+  .secondary-strengths, .secondary-limitations {
+    width: 100%;
+  }
+}
+
+/* Question Card Styles */
+.question-card {
+  text-align: left;
+}
+
+.question-card h3 {
+  text-align: left;
+  margin-bottom: 1rem;
+}
+
+/* Secondary profile styling */
+.secondary-profile {
+  margin-top: 2rem;
+  width: 100%;
+}
+
+.secondary-profile h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.secondary-profile-info {
+  padding: 1.5rem;
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.2);
+  text-align: left;
+}
+
+.secondary-profile-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.secondary-type-image {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.secondary-profile-info h4 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
+}
+
+.secondary-profile-info p {
+  margin-bottom: 1rem;
+}
+
+.secondary-type-details {
+  display: flex;
+  gap: 20px;
+  margin-top: 1rem;
+}
+
+.secondary-strengths, .secondary-limitations {
+  flex: 1;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 10px 15px;
+}
+
+.secondary-strengths h5, .secondary-limitations h5 {
+  margin-top: 0;
+  text-align: center;
+  margin-bottom: 8px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.secondary-strengths ul, .secondary-limitations ul {
+  margin: 0;
+  padding-left: 20px;
+}
+
+.secondary-strengths li, .secondary-limitations li {
+  margin-bottom: 6px;
 }
