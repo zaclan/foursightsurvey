@@ -8,7 +8,9 @@ const port = process.env.PORT || 5001;
 
 // Middleware
 app.use(cors({
-  origin: ['http://localhost:3000', 'http://localhost:5173', 'https://foursightsurvey.vercel.app'],
+  origin: ['http://localhost:3000', 'http://localhost:5173', 'https://foursightsurvey.vercel.app',
+    'https://foursightsurvey-fuil9b27x-zacs-projects-6354f309.vercel.app', // Add your deployed URL
+    /\.vercel\.app$/],
   methods: ['GET', 'POST', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
