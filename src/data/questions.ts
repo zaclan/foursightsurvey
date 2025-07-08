@@ -5,7 +5,20 @@ import implementerImage from './profiles/implementers.png';
 import integratorImage from './profiles/integrator.png';
 import q3_1Image from './images/q3_1.jpg';
 import q3_2Image from './images/q3_2.jpg';
-import q5_1Image from './images/q5_1.jpg';
+// New image imports
+import q1_1Image from './images/Q1-1.jpg';
+import q1_2Image from './images/Q1-2.jpg';
+import q2_1Image from './images/Q2-1.jpg';
+import q2_2Image from './images/Q2-2.jpg';
+import q4_1Image from './images/Q4-1.jpg';
+import q4_2Image from './images/Q4-2.jpg';
+import q5_1Image from './images/Q5-1.jpg';
+import q5_2Image from './images/Q5-2.jpg';
+import q6_1Image from './images/Q6-1.jpg';
+import q6_2Image from './images/Q6-2.jpg';
+import q7_1Image from './images/Q7-1.jpg';
+import q7_2Image from './images/Q7-2.jpg';
+import q8_1Image from './images/Q8-1.jpg';
 
 export interface Answer {
   id: string;
@@ -28,15 +41,15 @@ export interface QuizQuestion {
 export const questions: QuizQuestion[] = [
   {
     id: 'q1',
-    text: 'When you entered the game, did you do/say any of the following? ',
+    text: 'When you entered the game, did you do/say any of the following?',
     images: [
-      // Example: '/images/question1-image1.jpg',
-      // Multiple images can be added here
+      q1_1Image,
+      q1_2Image
     ],
     answers: [
       { 
         id: 'q1a1', 
-        text: 'I like to define the problem first. " Guys are we supposed to go to the bottom? Is that where the destination is?" ', 
+        text: 'I like to define the problem first. " Guys are we supposed to go to the bottom? Is that where the destination is?"', 
         points: { 
           CLARIFIER: 2, 
           IDEATOR: 0, 
@@ -46,7 +59,7 @@ export const questions: QuizQuestion[] = [
       },
       { 
         id: 'q1a2', 
-        text: 'I like to brainstorm the possible solutions first, “ we can try to split according to 2-2, or 3-1, or maybe we all go one side first”', 
+        text: 'I like to brainstorm the possible solutions first, “ we can try to split according to 2-2, or 3-1, or maybe we all go one side first.”', 
         points: { 
           CLARIFIER: 0, 
           IDEATOR: 2, 
@@ -56,7 +69,7 @@ export const questions: QuizQuestion[] = [
       },
       { 
         id: 'q1a3', 
-        text: 'I am a just do it type of person. [Immediately goes to one of the path upon entering the challenge]', 
+        text: 'I am a just do it type of person. [Immediately goes to one of the path upon entering the challenge].', 
         points: { 
           CLARIFIER: 0, 
           IDEATOR: 0, 
@@ -66,7 +79,7 @@ export const questions: QuizQuestion[] = [
       },
       { 
         id: 'q1a4', 
-        text: 'I like to think about what needs to be done in order for the solution to be feasible. “Okay, we may need to split up. [Someone] you can go with [Someone], I will go with [Someone]” [try to issue instructions to the team]', 
+        text: 'I like to think about what needs to be done in order for the solution to be feasible. “Okay, we may need to split up. [Someone] you can go with [Someone], I will go with [Someone]” [try to issue instructions to the team].', 
         points: { 
           CLARIFIER: 0, 
           IDEATOR: 0, 
@@ -80,8 +93,8 @@ export const questions: QuizQuestion[] = [
     id: 'q2',
     text: 'On the fifth floor, when you have to hold a button for your teammate on the same side, did you do/say any of the following?',
     images: [
-      // Example: '/images/question2-image1.jpg',
-      // Multiple images can be added here
+      q2_1Image,
+      q2_2Image
     ],
     answers: [
       { 
@@ -96,7 +109,7 @@ export const questions: QuizQuestion[] = [
       },
       { 
         id: 'q2a2', 
-        text: 'I want to have detailed information in structured format such as:  “ First go to step on the button, then release the button after the teammate has passed through, then you can move forward. ”', 
+        text: 'I want to have detailed information in structured format such as:  “ First go to step on the button, then release the button after the teammate has passed through, then you can move forward.”', 
         points: { 
           CLARIFIER: 1, 
           IDEATOR: 0, 
@@ -106,7 +119,7 @@ export const questions: QuizQuestion[] = [
       },
       { 
         id: 'q2a3', 
-        text: 'I want to come up with feasible solutions. “Let me try stepping on this button first and then [teammate on same side] can try going forward if the staircase repairs” ', 
+        text: 'I want to come up with feasible solutions. “Let me try stepping on this button first and then [teammate on same side] can try going forward if the staircase repairs.”', 
         points: { 
           CLARIFIER: 0, 
           IDEATOR: 0, 
@@ -116,7 +129,7 @@ export const questions: QuizQuestion[] = [
       },
       { 
         id: 'q2a4', 
-        text: 'I want to think of cool solutions to deal with the broken staircase. “There’s a gap, should we try jumping? Or both of us stand on the button together?” ', 
+        text: 'I want to think of cool solutions to deal with the broken staircase. “There’s a gap, should we try jumping? Or both of us stand on the button together?”', 
         points: { 
           CLARIFIER: 0, 
           IDEATOR: 2, 
@@ -130,15 +143,13 @@ export const questions: QuizQuestion[] = [
     id: 'q3',
     text: 'On the fourth floor (where one team needs to step on the button for the other team on the other side to go through), did you do/say any of the following?',
     images: [
-      // Example: '/images/question3-image1.jpg',
-      // Multiple images can be added here
       q3_1Image,
       q3_2Image
     ],
     answers: [
       { 
         id: 'q3a1', 
-        text: 'I need to see some motion rather than just talking. [Immediately step on whatever button or immediately move forward when the gap closes.]', 
+        text: 'I need to see some motion rather than just talking. [Immediately step on whatever button or immediately move forward when the gap closes].', 
         points: { 
           CLARIFIER: 0, 
           IDEATOR: 0, 
@@ -148,7 +159,7 @@ export const questions: QuizQuestion[] = [
       },
       { 
         id: 'q3a2', 
-        text: 'I need to fully understand how the teams coordinate. “ the staircases here are broken right? Does the other side have buttons? Are the other side supposed to help close our gaps?” ', 
+        text: 'I need to fully understand how the teams coordinate. “ the staircases here are broken right? Does the other side have buttons? Are the other side supposed to help close our gaps?”', 
         points: { 
           CLARIFIER: 2, 
           IDEATOR: 1, 
@@ -168,7 +179,7 @@ export const questions: QuizQuestion[] = [
       },
       { 
         id: 'q3a4', 
-        text: 'I need to design the solution and make sure it is possible for the two teams to coordinate. “Okay everyone do not move, one person move at a time, [someone] step on a button and see what happens, [someone] go forward to the safe spot, [someone] do not release” ', 
+        text: 'I need to design the solution and make sure it is possible for the two teams to coordinate. “Okay everyone do not move, one person move at a time, [someone] step on a button and see what happens, [someone] go forward to the safe spot, [someone] do not release.”', 
         points: { 
           CLARIFIER: 0, 
           IDEATOR: 0, 
@@ -182,8 +193,8 @@ export const questions: QuizQuestion[] = [
     id: 'q4',
     text: 'when there is a button on the plank between the gap, did you do or say any of the following?',
     images: [
-      // Example: '/images/question4-image1.jpg',
-      // Multiple images can be added here
+      q4_1Image,
+      q4_2Image
     ],
     answers: [
       { 
@@ -232,14 +243,13 @@ export const questions: QuizQuestion[] = [
     id: 'q5',
     text: 'When you reached the second floor, where there are 4 buttons with different combinations, did you do/say any of the following?',
     images: [
-      // Example: '/images/question5-image1.jpg',
-      // Multiple images can be added here
-      q5_1Image
+      q5_1Image,
+      q5_2Image
     ],
     answers: [
       { 
         id: 'q5a1', 
-        text: 'I tend to always give many different interesting options when confronted with new challenges. [Steps on the 4 buttons to see what will happen.]', 
+        text: 'I tend to always give many different interesting options when confronted with new challenges. [Steps on the 4 buttons to see what will happen].', 
         points: { 
           CLARIFIER: 0, 
           IDEATOR: 2, 
@@ -249,7 +259,7 @@ export const questions: QuizQuestion[] = [
       },
       { 
         id: 'q5a2', 
-        text: 'I tend to be meticulous in planning how to deal with challenges. “I observe there are four buttons on our side and there are four sections on the other side. Let’s call the buttons 1,2,3 and 4, I will step on each button and see which gap closes. If i step on button 1 and that gap closes, we can call that gap “gap 1”, so we find out which button matches which gap” ', 
+        text: 'I tend to be meticulous in planning how to deal with challenges. “I observe there are four buttons on our side and there are four sections on the other side. Let’s call the buttons 1,2,3 and 4, I will step on each button and see which gap closes. If i step on button 1 and that gap closes, we can call that gap “gap 1”, so we find out which button matches which gap.”', 
         points: { 
           CLARIFIER: 1, 
           IDEATOR: 0, 
@@ -269,7 +279,7 @@ export const questions: QuizQuestion[] = [
       },
       { 
         id: 'q5a4', 
-        text: 'I tend to trial and error rather than thinking over to figure things out first. [Goes past the 4 buttons and tries to reach the bottom] or says “guys there a huge hole in front of us.” ', 
+        text: 'I tend to trial and error rather than thinking over to figure things out first. [Goes past the 4 buttons and tries to reach the bottom] or says “guys there a huge hole in front of us.”', 
         points: { 
           CLARIFIER: 0, 
           IDEATOR: 0, 
@@ -283,7 +293,8 @@ export const questions: QuizQuestion[] = [
     id: 'q6',
     text: 'At the beginning of the game, when someone falls down, did you do/say any of the following? ',
     images: [
-      // Example images can be added here
+      q6_1Image,
+      q6_2Image
     ],
     answers: [
       { 
@@ -298,7 +309,7 @@ export const questions: QuizQuestion[] = [
       },
       { 
         id: 'q6a2', 
-        text: 'I prefer to make quick decisions and focus on finding the solution. “ [Jumps down too or runs around the place in circles and explore around.]”', 
+        text: 'I prefer to make quick decisions and focus on finding the solution. [Jumps down too or runs around the place in circles and explore around].', 
         points: { 
           CLARIFIER: 0, 
           IDEATOR: 0, 
@@ -308,7 +319,7 @@ export const questions: QuizQuestion[] = [
       },
       { 
         id: 'q6a3', 
-        text: 'I prefer to think of many ways to save the person that fell and take action without detailed planning. “Maybe just [someone] jump down or maybe you(the person that fell) wait at the bottom for us or we see if we can get to the destination without that person” ', 
+        text: 'I prefer to think of many ways to save the person that fell and take action without detailed planning. “Maybe just [someone] jump down or maybe you(the person that fell) wait at the bottom for us or we see if we can get to the destination without that person.”', 
         points: { 
           CLARIFIER: 0, 
           IDEATOR: 2, 
@@ -318,7 +329,7 @@ export const questions: QuizQuestion[] = [
       },
       { 
         id: 'q6a4', 
-        text: 'I prefer to focus on one idea and carry it out. “[ someone] fell, ok so you need to try coming up by going up the staircase and see if it is possible” ', 
+        text: 'I prefer to focus on one idea and carry it out. “[someone] fell, ok so you need to try coming up by going up the staircase and see if it is possible.”', 
         points: { 
           CLARIFIER: 0, 
           IDEATOR: 0, 
@@ -332,12 +343,13 @@ export const questions: QuizQuestion[] = [
     id: 'q7',
     text: 'When you fell down, did you do/say any of the following?',
     images: [
-      // Example images can be added here
+      q7_1Image,
+      q7_2Image
     ],
     answers: [
       { 
         id: 'q7a1', 
-        text: 'I usually want to understand first before taking another attempt. “Guys I fell, did anyone leave the button ? Let’s not do that next time. ” ', 
+        text: 'I usually want to understand first before taking another attempt. “Guys I fell, did anyone leave the button ? Let’s not do that next time.”', 
         points: { 
           CLARIFIER: 2, 
           IDEATOR: 0, 
@@ -357,7 +369,7 @@ export const questions: QuizQuestion[] = [
       },
       { 
         id: 'q7a3', 
-        text: 'I usually try to test if a solution works. “Let me see if i can go up myself first, if I can’t we have to try something else”', 
+        text: 'I usually try to test if a solution works. “Let me see if i can go up myself first, if I can’t we have to try something else.”', 
         points: { 
           CLARIFIER: 0, 
           IDEATOR: 0, 
@@ -381,12 +393,12 @@ export const questions: QuizQuestion[] = [
     id: 'q8',
     text: 'When someone fell down, and everyone is back to the starting point, did you do/say any of the following? ',
     images: [
-      // Example images can be added here
+      q8_1Image,
     ],
     answers: [
       { 
         id: 'q8a1', 
-        text: 'I’m not someone who settles with a rough sensing of how the solution works. “ guys our next plan is that whenever one person steps on the button, he or she does not move until someone else is safe” ', 
+        text: 'I’m not someone who settles with a rough sensing of how the solution works. “ guys our next plan is that whenever one person steps on the button, he or she does not move until someone else is safe.” ', 
         points: { 
           CLARIFIER: 0, 
           IDEATOR: 0, 
@@ -396,7 +408,7 @@ export const questions: QuizQuestion[] = [
       },
       { 
         id: 'q8a2', 
-        text: 'I’m not a draggy person. Just goes to one path and tries to go down again ', 
+        text: 'I’m not a draggy person. Just goes to one path and tries to go down again.', 
         points: { 
           CLARIFIER: 0, 
           IDEATOR: 0, 
@@ -430,7 +442,6 @@ export const questions: QuizQuestion[] = [
     id: 'q9',
     text: 'Which one best describes you? ',
     images: [
-      // Example images can be added here
     ],
     answers: [
       { 
@@ -455,7 +466,7 @@ export const questions: QuizQuestion[] = [
       },
       { 
         id: 'q9a3', 
-        text: 'I would never/seldom fall down and I will question when a person fell ', 
+        text: 'I would never/seldom fall down and I will question when a person fell.', 
         points: { 
           CLARIFIER: 2, 
           IDEATOR: 0, 
@@ -465,7 +476,7 @@ export const questions: QuizQuestion[] = [
       },
       { 
         id: 'q9a4', 
-        text: 'I fell down quite a few times and I think it’s completely ok, because I’m just exploring the possibilities  ', 
+        text: 'I fell down quite a few times and I think it’s completely ok, because I’m just exploring the possibilities.', 
         points: { 
           CLARIFIER: 0, 
           IDEATOR: 2, 
@@ -519,7 +530,7 @@ export const foursightTypeInfo = {
       'Likes to examine the pluses and minuses of an idea',
       'Likes to compare competing solutions',
       'Enjoys analyzing potential solutions',
-      'Enjoy planning steps to implement an idea'],
+      'Enjoys planning steps to implement an idea'],
     limitations: [
       'May get stuck in developing the perfect solution',
       'Struggle when require swift action without time for comparing options.',]
