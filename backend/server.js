@@ -13,32 +13,35 @@ const port = process.env.PORT || 5001;
 let currentAppToken = null;
 let tokenExpireTime = 0;
 
-// Function to get a valid app token
-async function getValidAppToken() {
+async function getValidTenantToken() {
   const now = Date.now();
   
   // If token exists and is not expired (with 5 min buffer), return it
-  if (currentAppToken && tokenExpireTime > now + 300000) {
-    return currentAppToken;
+  if (tenantAccessToken && tokenExpireTime > now + 300000) {
+    return tenantAccessToken;
   }
   
   try {
-    // Request a new app token
-    const tokenResponse = await client.auth.appAccessToken.internal({});
+    const response = await client.auth.tenantAccessToken.internal({
+        data: {
+            app_id: process.env.LARK_APP_ID || 'YOUR_APP_ID',
+            app_secret: process.env.LARK_APP_SECRET
+        }
+    });
     
-    if (tokenResponse.code !== 0) {
-      console.error('Failed to get app token:', tokenResponse);
-      throw new Error(`Failed to get app token: ${tokenResponse.msg}`);
+    if (response.code !== 0) {
+      console.error('Failed to get tenant token:', response);
+      throw new Error(`Failed to get tenant token: ${response.msg}`);
     }
     
-    currentAppToken = tokenResponse.app_access_token;
-    // Set expiry time (token valid for 30 days)
-    tokenExpireTime = now + (30 * 24 * 60 * 60 * 1000); 
+    tenantAccessToken = response.tenant_access_token;
+    // Set expiry time (typically 2 hours)
+    tokenExpireTime = now + (response.expire * 1000);
     
-    console.log('New app token acquired, expires:', new Date(tokenExpireTime));
-    return currentAppToken;
+    console.log('New tenant token acquired, expires:', new Date(tokenExpireTime));
+    return tenantAccessToken;
   } catch (error) {
-    console.error('Error getting app token:', error);
+    console.error('Error getting tenant token:', error);
     throw error;
   }
 }
@@ -72,7 +75,7 @@ app.post('/api/submit-survey', async (req, res) => {
     console.log('Received submission:', { userData, profileResult });
 
     // Get a valid app token
-    const appToken = await getValidAppToken();
+    const appToken = await getValidTenantToken();
 
     // Submit to Lark Base
     const response = await client.bitable.appTableRecord.create({
