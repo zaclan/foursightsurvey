@@ -151,7 +151,7 @@ const UserRegistration: React.FC<UserRegistrationProps> = ({ onSubmit, onBack })
                   key={color.value} 
                   className={`color-option ${userData.avatarColor === color.value ? 'selected' : ''}`}
                   style={{ backgroundColor: color.value }}
-                  onClick={() => setUserData(prev => ({ ...prev, avatarColor: color.value }))}
+                  onClick={() => setUserData(prev => ({ ...prev, avatarColor: color.label }))}
                   title={color.label}
                 />
               ))}

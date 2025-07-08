@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect, useState} from 'react';
 import type { Scores, FourSightTypeMap, FourSightType } from '../types';
 import type { UserData } from './UserRegistration';
+import { submitToLarkBase } from '../api/larkService';
 
 interface ResultsProps {
   scores: Scores;
@@ -16,7 +17,10 @@ interface ProfileResult {
   isDualPrimary: boolean;
 }
 
-const Results: React.FC<ResultsProps> = ({ scores, onReset, foursightTypes }) => {
+const Results: React.FC<ResultsProps> = ({ scores, onReset, foursightTypes, userData }) => {
+  const [submissionStatus, setSubmissionStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+  const [hasSubmitted, setHasSubmitted] = useState(false); // Add this to track if we've submitted
+  
   // Determine the profile result based on the three criteria
   const profileResult = determineProfileResult(scores);
   
@@ -27,6 +31,36 @@ const Results: React.FC<ResultsProps> = ({ scores, onReset, foursightTypes }) =>
   Object.entries(scores).forEach(([type, score]) => {
     scorePercentages[type] = Math.round((score / totalScore) * 100);
   });
+
+  // Fix the useEffect to run only once when the component mounts with userData
+  useEffect(() => {
+    // Only submit if we have userData and haven't submitted yet
+    if (userData && !hasSubmitted) {
+      const submitData = async () => {
+        setSubmissionStatus('submitting');
+        try {
+          // Create a submission object that won't change between renders
+          const submissionData = {
+            primaryType: profileResult.primaryType,
+            secondaryType: profileResult.secondaryType || '',
+            isIntegrator: profileResult.isIntegrator,
+            isDualPrimary: profileResult.isDualPrimary
+          };
+          
+          const success = await submitToLarkBase(userData, submissionData);
+          setSubmissionStatus(success ? 'success' : 'error');
+        } catch (error) {
+          console.error('Failed to submit results:', error);
+          setSubmissionStatus('error');
+        } finally {
+          // Mark as submitted regardless of success to prevent retries
+          setHasSubmitted(true);
+        }
+      };
+      
+      submitData();
+    }
+  }, [userData, hasSubmitted]);
 
   return (
     <div className="results-container">
@@ -191,6 +225,14 @@ const Results: React.FC<ResultsProps> = ({ scores, onReset, foursightTypes }) =>
           </div>
         </div>
       </div>
+
+      {userData && (
+        <div className={`submission-status ${submissionStatus}`}>
+          {submissionStatus === 'submitting' && <p>Saving your results...</p>}
+          {submissionStatus === 'success' && <p>Results saved successfully!</p>}
+          {submissionStatus === 'error' && <p>Failed to save results. Please take a screenshot.</p>}
+        </div>
+      )}
       
       <div className="action-buttons">
         <button onClick={onReset} className="reset-button">Take the Test Again</button>
