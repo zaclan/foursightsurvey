@@ -10,7 +10,7 @@ const app = express();
 const port = process.env.PORT || 5001;
 
 // Token management
-let currentAppToken = null;
+let tenantAccessToken = null;
 let tokenExpireTime = 0;
 
 async function getValidTenantToken() {
