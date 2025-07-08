@@ -19,6 +19,7 @@ const Quiz: React.FC<QuizProps> = ({ userData }) => {
   const [responses, setResponses] = useState<MultiResponses>({});
   const [isCompleted, setIsCompleted] = useState<boolean>(false);
   const [scores, setScores] = useState<Scores | null>(null);
+  const [showConfirmation, setShowConfirmation] = useState<boolean>(false);
 
   const handleAnswerSelect = (questionId: string, answerId: string) => {
     // Get current answers for this question (or empty array if none)
@@ -43,9 +44,20 @@ const Quiz: React.FC<QuizProps> = ({ userData }) => {
     if (currentQuestionIndex < questions.length - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
     } else {
-      calculateResults();
-      setIsCompleted(true);
+      if (!showConfirmation) {
+        setShowConfirmation(true);
+      }
     }
+  };
+
+  const handleFinalSubmit = () => {
+    calculateResults();
+    setIsCompleted(true);
+    setShowConfirmation(false);
+  };
+
+  const cancelSubmit = () => {
+    setShowConfirmation(false);
   };
 
   const goToPreviousQuestion = () => {
@@ -102,6 +114,18 @@ const Quiz: React.FC<QuizProps> = ({ userData }) => {
 
   return (
     <div className="quiz-container">
+      {showConfirmation && (
+        <div className="confirmation-modal">
+          <div className="confirmation-content">
+            <h3>Submit Your Answers?</h3>
+            <p>Are you sure you want to submit your answers and see your results?</p>
+            <div className="confirmation-buttons">
+              <button className="nav-button" onClick={cancelSubmit}>Cancel</button>
+              <button className="nav-button primary" onClick={handleFinalSubmit}>Submit</button>
+            </div>
+          </div>
+        </div>
+      )}
       <div className="progress-bar">
         <div 
           className="progress" 
