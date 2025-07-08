@@ -80,8 +80,8 @@ app.post('/api/submit-survey', async (req, res) => {
     // Submit to Lark Base
     const response = await client.bitable.appTableRecord.create({
       path: {
-        app_token: process.env.LARK_APP_TOKEN || 'YmTib3BYcavbeUssxXRcRCwJnAb',
-        table_id: process.env.LARK_TABLE_ID || 'tblut066VHRVSYBm',
+        app_token: process.env.LARK_APP_TOKEN ,
+        table_id: process.env.LARK_TABLE_ID,
       },
       data: {
         fields: {
