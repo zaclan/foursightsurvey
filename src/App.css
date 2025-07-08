@@ -473,19 +473,20 @@
   border-radius: 50%;
 }
 
+/* Updated Pie Chart legend styles */
 .pie-legend {
   display: flex;
-  flex-wrap: wrap;
   justify-content: center;
   gap: 1rem;
-  max-width: 90%;
+  max-width: 100%;
   margin-top: 1rem;
 }
 
 .legend-item {
   display: flex;
   align-items: center;
-  margin: 0.5rem 1rem;
+  margin: 0.5rem;
+  white-space: nowrap;
 }
 
 .legend-color {
@@ -493,11 +494,14 @@
   height: 16px;
   border-radius: 4px;
   margin-right: 0.5rem;
+  flex-shrink: 0;
 }
 
 .legend-label {
   font-size: 0.9rem;
   font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /* Remove the old score-bar styles if no longer needed */
@@ -808,6 +812,13 @@
 
   .pie-legend {
     flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .legend-item {
+    width: 100%;
+    margin: 0.3rem 0;
+    white-space: normal;
   }
   
   .form-buttons {

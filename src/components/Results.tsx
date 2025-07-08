@@ -26,11 +26,26 @@ const Results: React.FC<ResultsProps> = ({ scores, onReset, foursightTypes, user
   
   // Convert scores to percentages for visualization
   const totalScore = Object.values(scores).reduce((sum, score) => sum + score, 0);
-  const scorePercentages: Record<string, number> = {};
   
+  // First calculate raw percentages
+  const rawPercentages: Record<string, number> = {};
   Object.entries(scores).forEach(([type, score]) => {
-    scorePercentages[type] = Math.round((score / totalScore) * 100);
+    rawPercentages[type] = (score / totalScore) * 100;
   });
+  
+  // Adjust percentages to ensure they sum to exactly 100%
+  const scorePercentages: Record<string, number> = {};
+  let remainingPercentage = 100;
+  const types = Object.keys(scores);
+  
+  // Round percentages for all but the last type
+  types.slice(0, -1).forEach((type) => {
+    scorePercentages[type] = Math.round(rawPercentages[type]);
+    remainingPercentage -= scorePercentages[type];
+  });
+  
+  // Assign the remaining percentage to the last type to ensure sum is 100%
+  scorePercentages[types[types.length - 1]] = remainingPercentage;
 
   // Fix the useEffect to run only once when the component mounts with userData
   useEffect(() => {
