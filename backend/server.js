@@ -7,7 +7,11 @@ const app = express();
 const port = process.env.PORT || 5001;
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: ['http://localhost:3000', 'http://localhost:5173', 'https://foursightsurvey.vercel.app'],
+  methods: ['GET', 'POST', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
 app.use(bodyParser.json());
 
 // Create Lark client
