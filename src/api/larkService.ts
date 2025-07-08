@@ -23,6 +23,7 @@ export async function submitToLarkBase(
 ): Promise<boolean> {
   // Create a unique ID for this submission
   const submissionId = getSubmissionId(userData);
+  console.log('API URL:', API_URL);
   
   // Check if this submission was already processed
   if (submissionIds.has(submissionId)) {
