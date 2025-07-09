@@ -212,7 +212,7 @@
 /* Selection limit instruction */
 .selection-limit {
   font-size: 0.9rem;
-  color: #666;
+  color: #ebe7e7;
   margin-bottom: 1rem;
   font-style: italic;
 }
@@ -471,6 +471,14 @@
   width: 100%;
   height: 100%;
   border-radius: 50%;
+}
+
+/* Add a hover effect for pie slices */
+.pie-slice:hover {
+  transform: scale(1.03);
+  filter: brightness(1.1);
+  z-index: 1;
+  transition: all 0.2s ease;
 }
 
 /* Updated Pie Chart legend styles */
@@ -806,10 +814,14 @@
   }
   
   .pie-chart {
-    width: 150px;
-    height: 150px;
+    width: 180px;
+    height: 180px;
   }
-
+  
+  .pie-slice-label {
+    font-size: 0.75rem !important;
+  }
+  
   .pie-legend {
     flex-direction: column;
     align-items: flex-start;

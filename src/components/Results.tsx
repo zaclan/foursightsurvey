@@ -2,6 +2,11 @@ import React, { useEffect, useState} from 'react';
 import type { Scores, FourSightTypeMap, FourSightType } from '../types';
 import type { UserData } from './UserRegistration';
 import { submitToLarkBase } from '../api/larkService';
+import { Pie } from 'react-chartjs-2';
+import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
+import ChartDataLabels from 'chartjs-plugin-datalabels';
+
+ChartJS.register(ArcElement, Tooltip, Legend, ChartDataLabels);
 
 interface ResultsProps {
   scores: Scores;
@@ -76,6 +81,10 @@ const Results: React.FC<ResultsProps> = ({ scores, onReset, foursightTypes, user
       submitData();
     }
   }, [userData, hasSubmitted]);
+
+  // Sort scores for legend display (highest to lowest)
+  const sortedScoreEntries = Object.entries(scores)
+    .sort(([, scoreA], [, scoreB]) => scoreB - scoreA);
 
   return (
     <div className="results-container">
@@ -187,43 +196,66 @@ const Results: React.FC<ResultsProps> = ({ scores, onReset, foursightTypes, user
       <div className="score-breakdown">
         <h3>Your Complete Profile:</h3>
         <div className="pie-chart-container">
-          <div className="pie-chart">
-            {Object.entries(scores).map(([type, _], index, array) => {
-              const typeKey = type as keyof FourSightTypeMap;
-              const percentage = scorePercentages[type];
-              
-              // Calculate the pie chart sectors
-              let previousPercentage = 0;
-              for (let i = 0; i < index; i++) {
-                previousPercentage += scorePercentages[array[i][0]];
-              }
-              
-              // Convert percentages to degrees for the pie slices
-              const startDegree = (previousPercentage / 100) * 360;
-              const endDegree = startDegree + (percentage / 100) * 360;
-              
-              // Generate the CSS for the pie slice
-              const background = `conic-gradient(
-                transparent ${startDegree}deg,
-                ${foursightTypes[typeKey].color} ${startDegree}deg,
-                ${foursightTypes[typeKey].color} ${endDegree}deg,
-                transparent ${endDegree}deg
-              )`;
-              
-              return (
-                <div 
-                  key={type}
-                  className="pie-slice"
-                  style={{ background }}
-                />
-              );
-            })}
+          <div style={{ width: '300px', height: '300px', margin: '0 auto' }}>
+            <Pie
+              data={{
+                labels: sortedScoreEntries.map(([type, _]) => 
+                  foursightTypes[type as keyof FourSightTypeMap].label
+                ),
+                datasets: [
+                  {
+                    data: sortedScoreEntries.map(([type, _]) => scorePercentages[type]),
+                    backgroundColor: sortedScoreEntries.map(([type, _]) => 
+                      foursightTypes[type as keyof FourSightTypeMap].color
+                    ),
+                    borderWidth: 1,
+                  },
+                ],
+              }}
+              options={{
+                plugins: {
+                  tooltip: {
+                    callbacks: {
+                      label: function(context) {
+                        const typeKey = sortedScoreEntries[context.dataIndex][0];
+                        const score = sortedScoreEntries[context.dataIndex][1];
+                        const percentage = context.parsed;
+                        return `${foursightTypes[typeKey as keyof FourSightTypeMap].label}: ${percentage}% (${score} pts)`;
+                      }
+                    }
+                  },
+                  legend: {
+                    position: 'bottom',
+                    display: false,
+                  },
+                              datalabels: {
+                    formatter: (value, ctx) => {
+                      const label = ctx.chart.data.labels?.[ctx.dataIndex] ?? '';
+                      return `${label}\n${value}%`;
+                    },
+                    color: '#0d0c0c',
+                    font: {
+                      weight: 'bold',
+                      size: 12
+                    },
+                    textAlign: 'center',
+                    // Only show labels on segments that are large enough
+                    display: function(context) {
+                      const data = context.dataset.data;
+                      const value = data && Array.isArray(data)
+                        ? data[context.dataIndex]
+                        : undefined;
+                      return typeof value === 'number' && value > 8; // Only show if > 8%
+                    }
+                  }
+                }
+              }}
+            />
           </div>
           
           <div className="pie-legend">
-            {Object.entries(scores).map(([type, score]) => {
+            {sortedScoreEntries.map(([type, score]) => {
               const typeKey = type as keyof FourSightTypeMap;
-              const percentage = scorePercentages[type];
               
               return (
                 <div key={type} className="legend-item">
@@ -232,7 +264,7 @@ const Results: React.FC<ResultsProps> = ({ scores, onReset, foursightTypes, user
                     style={{ backgroundColor: foursightTypes[typeKey].color }}
                   />
                   <div className="legend-label">
-                    {foursightTypes[typeKey].label}: {percentage}% ({score} pts)
+                    {foursightTypes[typeKey].label}: {score} pts
                   </div>
                 </div>
               );
@@ -240,6 +272,7 @@ const Results: React.FC<ResultsProps> = ({ scores, onReset, foursightTypes, user
           </div>
         </div>
       </div>
+
 
       {userData && (
         <div className={`submission-status ${submissionStatus}`}>

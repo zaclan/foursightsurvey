@@ -36,15 +36,17 @@ const QuestionCard: React.FC<QuestionCardProps> = ({
   return (
     <div className="question-card">
       <h3>{question.text}</h3>
+
+      <p className="selection-limit">
+        Select up to {maxSelections} options ({currentResponses.length}/{maxSelections} selected)
+      </p>
       
       {/* Use the ImageGallery component if images exist */}
       {question.images && question.images.length > 0 && (
         <ImageGallery images={question.images} questionId={question.id} />
       )}
       
-      <p className="selection-limit">
-        Select up to {maxSelections} options ({currentResponses.length}/{maxSelections} selected)
-      </p>
+      
       
       <div className="answer-options">
         {question.answers.map((answer: Answer) => {

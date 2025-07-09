@@ -17,7 +17,7 @@ const UserRegistration: React.FC<UserRegistrationProps> = ({ onSubmit, onBack })
     name: '',
     groupNumber: '',
     classCode: '',
-    avatarColor: '#ffeb3b', 
+    avatarColor: 'Yellow', 
   });
 
   const [errors, setErrors] = useState({
@@ -33,7 +33,7 @@ const UserRegistration: React.FC<UserRegistrationProps> = ({ onSubmit, onBack })
     { value: '#808080', label: 'Grey' }
   ];
 
-  const groupNumberOptions = Array.from({ length: 9 }, (_, i) => (i + 1).toString());
+  const groupNumberOptions = Array.from({ length: 10 }, (_, i) => (i + 1).toString());
   
   const classCodeOptions = ['ami1701', 'ami1702'];
 

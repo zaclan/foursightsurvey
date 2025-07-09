@@ -513,11 +513,11 @@ export const foursightTypeInfo = {
       'Likes to look at the big picture',
       'Enjoys toying with ideas and possibilities',
       'Likes to stretch his or her imagination',
-      'Enjoys thinking in more global and abstracts terms.',
-      'Takes an intuitive approach innovation.'],
+      'Enjoys thinking in more global and abstracts terms',
+      'Takes an intuitive approach innovation'],
     limitations: [
       'May overlook details.',
-      'May feel struggle with highly structured environment.',
+      'May feel struggle with highly structured environment',
       ]
   },
   DEVELOPER: {
@@ -533,7 +533,7 @@ export const foursightTypeInfo = {
       'Enjoys planning steps to implement an idea'],
     limitations: [
       'May get stuck in developing the perfect solution',
-      'Struggle when require swift action without time for comparing options.',]
+      'Struggle when require swift action without time for comparing options',]
   },
   IMPLEMENTER: {
     label: 'Implementer',
@@ -554,7 +554,7 @@ export const foursightTypeInfo = {
   
   INTEGRATOR: {
     label: 'Integrator',
-    description: 'These individuals has a balanced profile across the four roles, able to shift between clarifying, ideating, developing, and implementing as needed. Such an individual would be adept at integrating the different stages of the problem-solving and innovation process',
+    description: 'These individuals has a balanced profile across the four roles, able to shift between clarifying, ideating, developing, and implementing as needed. Such an individual would be adept at integrating the different stages of the problem-solving and innovation process.',
     color: '#9b59b6', // Purple
     image: integratorImage,
     strengths: [
