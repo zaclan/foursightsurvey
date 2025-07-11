@@ -140,6 +140,11 @@
   color: #333; /* Added dark text for better contrast on yellow background */
 }
 
+.type-chip.integrator {
+  background-color: #9b59b6;
+  color: #333;
+}
+
 .start-button {
   padding: 0.9rem 2.5rem;
   background-color: #4a90e2;

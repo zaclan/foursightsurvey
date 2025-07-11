@@ -8,7 +8,7 @@ const StartPage: React.FC<StartPageProps> = ({ onStart }) => {
   return (
     <div className="start-page">
       <div className="start-card">
-        <h1>FourSight Thinking Assessment</h1>
+        <h1>Thinking Preference Assessment</h1>
         
         <div className="instructions">
           <h2>Instructions</h2>
@@ -19,12 +19,13 @@ const StartPage: React.FC<StartPageProps> = ({ onStart }) => {
           </ul>
           
           <div className="types-preview">
-            <h3>The Four Thinking Preferences:</h3>
+            <h3>The FourSight Thinking Preferences:</h3>
             <div className="type-chips">
               <div className="type-chip clarifier">Clarifier</div>
               <div className="type-chip ideator">Ideator</div>
               <div className="type-chip developer">Developer</div>
               <div className="type-chip implementer">Implementer</div>
+              <div className='type-chip integrator'>Integrator</div>
             </div>
           </div>
         </div>
