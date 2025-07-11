@@ -37,7 +37,7 @@ function App() {
       {currentScreen === 'quiz' && (
         <>
           <header className="app-header">
-            <h1>FourSight Thinking Assessment</h1>
+            <h1>Thinking Preference Assessment</h1>
             {userData && (
               <div className="user-info">
                 <div 

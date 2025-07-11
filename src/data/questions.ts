@@ -43,8 +43,7 @@ export const questions: QuizQuestion[] = [
     id: 'q1',
     text: 'When you entered the game, did you do/say any of the following?',
     images: [
-      q1_1Image,
-      q1_2Image
+      q1_1Image
     ],
     answers: [
       { 
@@ -93,8 +92,7 @@ export const questions: QuizQuestion[] = [
     id: 'q2',
     text: 'On the fifth floor, when you have to hold a button for your teammate on the same side, did you do/say any of the following?',
     images: [
-      q2_1Image,
-      q2_2Image
+      q2_1Image
     ],
     answers: [
       { 
@@ -143,8 +141,7 @@ export const questions: QuizQuestion[] = [
     id: 'q3',
     text: 'On the fourth floor (where one team needs to step on the button for the other team on the other side to go through), did you do/say any of the following?',
     images: [
-      q3_1Image,
-      q3_2Image
+      q3_1Image
     ],
     answers: [
       { 
@@ -193,8 +190,7 @@ export const questions: QuizQuestion[] = [
     id: 'q4',
     text: 'when there is a button on the plank between the gap, did you do or say any of the following?',
     images: [
-      q4_1Image,
-      q4_2Image
+      q4_1Image
     ],
     answers: [
       { 
@@ -243,8 +239,7 @@ export const questions: QuizQuestion[] = [
     id: 'q5',
     text: 'When you reached the second floor, where there are 4 buttons with different combinations, did you do/say any of the following?',
     images: [
-      q5_1Image,
-      q5_2Image
+      q5_1Image
     ],
     answers: [
       { 
@@ -293,8 +288,7 @@ export const questions: QuizQuestion[] = [
     id: 'q6',
     text: 'At the beginning of the game, when someone falls down, did you do/say any of the following? ',
     images: [
-      q6_1Image,
-      q6_2Image
+      q6_1Image
     ],
     answers: [
       { 
@@ -343,8 +337,7 @@ export const questions: QuizQuestion[] = [
     id: 'q7',
     text: 'When you fell down, did you do/say any of the following?',
     images: [
-      q7_1Image,
-      q7_2Image
+      q7_1Image
     ],
     answers: [
       { 

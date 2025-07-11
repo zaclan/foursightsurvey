@@ -13,7 +13,7 @@ const StartPage: React.FC<StartPageProps> = ({ onStart }) => {
         <div className="instructions">
           <h2>Instructions</h2>
           <ul>
-            <li>Please choose up to two options (preferably one) that resonates with you </li>
+            <li>Please choose up to two options (preferably one) that resonates with you. </li>
             <li>if you are unsure of what you did/what you said during the game, you may discuss with your teammates to let them help you try to recall.</li>
             <li>Do not take pictures/screenshot the photos in this questionnaire. They are copyrighted.</li>
           </ul>
