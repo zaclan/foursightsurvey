@@ -4,20 +4,13 @@ import developerImage from './profiles/developers.png';
 import implementerImage from './profiles/implementers.png';   
 import integratorImage from './profiles/integrator.png';
 import q3_1Image from './images/q3_1.jpg';
-import q3_2Image from './images/q3_2.jpg';
 // New image imports
 import q1_1Image from './images/Q1-1.jpg';
-import q1_2Image from './images/Q1-2.jpg';
 import q2_1Image from './images/Q2-1.jpg';
-import q2_2Image from './images/Q2-2.jpg';
 import q4_1Image from './images/Q4-1.jpg';
-import q4_2Image from './images/Q4-2.jpg';
 import q5_1Image from './images/Q5-1.jpg';
-import q5_2Image from './images/Q5-2.jpg';
 import q6_1Image from './images/Q6-1.jpg';
-import q6_2Image from './images/Q6-2.jpg';
 import q7_1Image from './images/Q7-1.jpg';
-import q7_2Image from './images/Q7-2.jpg';
 import q8_1Image from './images/Q8-1.jpg';
 
 export interface Answer {
