@@ -91,6 +91,11 @@ app.post('/api/submit-survey', async (req, res) => {
           'Colour': userData.avatarColor,
           'Profile 1': profileResult.primaryType,
           'Profile 2': profileResult.secondaryType,
+                    // Add percentages
+          'CLARIFIER %': profileResult.percentages?.CLARIFIER || 0,
+          'IDEATOR %': profileResult.percentages?.IDEATOR || 0,
+          'DEVELOPER %': profileResult.percentages?.DEVELOPER || 0,
+          'IMPLEMENTER %': profileResult.percentages?.IMPLEMENTER || 0,
           'Date': Date.now() // Current timestamp
         }
       },

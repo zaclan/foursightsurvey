@@ -64,7 +64,20 @@ const Results: React.FC<ResultsProps> = ({ scores, onReset, foursightTypes, user
             primaryType: profileResult.primaryType,
             secondaryType: profileResult.secondaryType || '',
             isIntegrator: profileResult.isIntegrator,
-            isDualPrimary: profileResult.isDualPrimary
+            isDualPrimary: profileResult.isDualPrimary,
+                  percentages: {
+                    CLARIFIER: scorePercentages['CLARIFIER'] || 0,
+                    IDEATOR: scorePercentages['IDEATOR'] || 0,
+                    DEVELOPER: scorePercentages['DEVELOPER'] || 0,
+                    IMPLEMENTER: scorePercentages['IMPLEMENTER'] || 0
+                  },
+                  // Include raw scores
+                  scores: {
+                    CLARIFIER: scores.CLARIFIER,
+                    IDEATOR: scores.IDEATOR,
+                    DEVELOPER: scores.DEVELOPER,
+                    IMPLEMENTER: scores.IMPLEMENTER
+                  }
           };
           
           const success = await submitToLarkBase(userData, submissionData);
