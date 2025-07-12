@@ -217,7 +217,7 @@
 /* Selection limit instruction */
 .selection-limit {
   font-size: 0.9rem;
-  color: #ebe7e7;
+  color: #333;
   margin-bottom: 1rem;
   font-style: italic;
 }
@@ -806,6 +806,10 @@
   
   .color-option.selected {
     box-shadow: 0 0 0 2px #2a2a2a, 0 0 0 4px #4a90e2;
+  }
+
+  .selection-limit {
+    color: #f0f0f0;
   }
 }
 
